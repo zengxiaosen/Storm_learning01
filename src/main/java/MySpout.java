@@ -3,6 +3,7 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.Map;
 
+import backtype.storm.metric.SystemBolt;
 import backtype.storm.spout.SpoutOutputCollector;
 import backtype.storm.task.TopologyContext;
 import backtype.storm.topology.IRichSpout;
@@ -74,6 +75,7 @@ public class MySpout implements IRichSpout{
 
     public void ack(Object msgId) {
         // TODO Auto-generated method stub
+        System.out.println("spout ack:"+msgId.toString());
 
     }
 
@@ -86,6 +88,14 @@ public class MySpout implements IRichSpout{
 
     public void close() {
         // TODO Auto-generated method stub
+        try{
+            br.close();
+            isr.close();
+            fis.close();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
     }
 
@@ -98,6 +108,7 @@ public class MySpout implements IRichSpout{
 
     public void fail(Object msgId) {
         // TODO Auto-generated method stub
+        System.out.println("spout fail:"+msgId.toString());
 
     }
 
