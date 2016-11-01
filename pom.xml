@@ -145,6 +145,19 @@
     </dependency>
 
 
+        <dependency>
+            <groupId>commons-configuration</groupId>
+            <artifactId>commons-configuration</artifactId>
+            <version>1.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.zookeeper</groupId>
+            <artifactId>zookeeper</artifactId>
+            <version>3.3.3</version>
+        </dependency>
+
+
+
     <dependency>
         <groupId>org.apache.storm</groupId>
         <artifactId>storm-core</artifactId>
