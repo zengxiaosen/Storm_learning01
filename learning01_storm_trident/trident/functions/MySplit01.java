@@ -27,7 +27,7 @@ public class MySplit01 extends BaseFunction implements Function {
         String logArr[] = log.split(patton);
         if(logArr.length == 3){
             //日期+session_id
-            collector.emit(new Values(DataFmt.getCountDate(logArr[2], DataFmt.date_short), logArr[1]));
+            collector.emit(new Values(DataFmt.getCountDate(logArr[2], DataFmt.date_short),"cf","pv_count", logArr[1]));
         }
 
     }

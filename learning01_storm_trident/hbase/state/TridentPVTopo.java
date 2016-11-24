@@ -50,20 +50,17 @@ public class TridentPVTopo {
         spout.setCycle(true);
 
         TridentConfig config = new TridentConfig("hbase_table","rowkey");
-        StateFactory state ;
-                //= HBaseAggregateSate.transactional(config);
+        StateFactory state = HBaseAggregateSate.transactional(config);
         TridentTopology topology = new TridentTopology();
-        TridentState wordCounts = topology.newStream("spout1", spout)
+        topology.newStream("spout1", spout)
                 .parallelismHint(16)//并发度
-                .each(new Fields("eachLog"), new MySplit01("\t"), new Fields("date", "session_id"))
+                .each(new Fields("eachLog"), new MySplit01("\t"), new Fields("date","cf","pv_count", "session_id"))
+                .project(new Fields("date","cf","pv_count"))
                 //根据session_id进行分组，分组之后搞一个pv
-                .groupBy(new Fields("date")).persistentAggregate(state, new Fields("session_id"),new Count(), new Fields("PV"))
+                .groupBy(new Fields("date","cf","pv_count"))
+                .persistentAggregate(state,new Count(), new Fields("PV"))
                 .parallelismHint(16);
-        //进行访问
-        topology.newDRPCStream("GetPV", drpc).each(new Fields("args"), new Split(" "), new Fields("date")).groupBy(new Fields("date"))
-                .stateQuery(wordCounts, new Fields("date"), new MapGet(), new Fields("PV")).each(new Fields("PV"), new FilterNull())
-                .applyAssembly(new FirstN(2, "PV", true));
-                //.aggregate(new Fields("count"), new Sum(), new Fields("sum"));
+
         return topology.build();
     }
     public static void main(String[] args) throws Exception{
@@ -72,7 +69,7 @@ public class TridentPVTopo {
         if(args.length == 0){
             LocalDRPC drpc = new LocalDRPC();
             LocalCluster cluster = new LocalCluster();
-            cluster.submitTopology("wordCounter", conf, buildTopology(drpc));
+            cluster.submitTopology("wordCounter", conf, buildTopology(null));
             for(int i=0; i<100; i++){
                 System.err.println("DRPC RESULT: " + drpc.execute("GetPV", "2014-01-07 2014-01-08"));
                 Thread.sleep(1000);

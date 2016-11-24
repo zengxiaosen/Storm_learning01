@@ -11,6 +11,11 @@
       <sourceFolder url="file://$MODULE_DIR$/learning02_hive" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/learning03_mr" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/learning04_paper_spark" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/learning04_paper_split" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/learning05_paper_split" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/learning06_scala" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/learning07_wordsplit" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/learning08_paper_cluster_kmeans" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />
@@ -165,5 +170,10 @@
     <orderEntry type="library" name="Maven: commons-collections:commons-collections:3.2.1" level="project" />
     <orderEntry type="library" name="org.apache.hive:hive-exec:0.12.0" level="project" />
     <orderEntry type="library" name="org.apache.hbase:hbase:0.94.14" level="project" />
+    <orderEntry type="library" name="org.apache.lucene:lucene-core:2.4.1" level="project" />
+    <orderEntry type="library" name="je-analysis-1.5.1" level="project" />
+    <orderEntry type="library" name="activation-1.1.1" level="project" />
+    <orderEntry type="library" name="scopt_2.11-3.3.0" level="project" />
+    <orderEntry type="library" name="ansj_seg-20130808 -2" level="project" />
   </component>
 </module>

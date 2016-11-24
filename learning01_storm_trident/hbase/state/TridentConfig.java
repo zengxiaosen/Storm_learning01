@@ -8,7 +8,7 @@ import java.util.Map;
 /**
  * Created by Administrator on 2016/10/27.
  */
-public class TridentConfig extends TupleTableConfig{
+public class TridentConfig<T> extends TupleTableConfig{
 
     private static final long serialVersionUID = 1l;
 
@@ -42,6 +42,7 @@ public class TridentConfig extends TupleTableConfig{
     public TridentConfig(String table, String rowKeyField){
         super(table, rowKeyField);
     }
+
     public TridentConfig(String table, String rowkeyField, String tupleTimestampField){
         super(table, rowkeyField, tupleTimestampField);
     }
